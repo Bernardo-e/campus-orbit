@@ -14,11 +14,14 @@ datasource db {
 
 
 model User {
-  id        String   @id @default(cuid())
-  name      String
-  email     String   @unique
-  password  String
-  createdAt DateTime @default(now())
+  id           String   @id @default(cuid())
+  name         String
+  email        String   @unique
+  password     String
+  bio          String?
+  targetExam   String?
+  targetBranch String?
+  createdAt    DateTime @default(now())
 
   savedColleges SavedCollege[]
 }
@@ -35,6 +38,7 @@ model College {
   courses      Course[]
   reviews      Review[]
   savedByUsers SavedCollege[]
+  predictors   CollegePredictor[]
 }
 
 model Course {
@@ -66,4 +70,13 @@ model SavedCollege {
   college   College @relation(fields: [collegeId], references: [id])
 
   @@unique([userId, collegeId])
+}
+
+model CollegePredictor {
+  id        String   @id @default(cuid())
+  exam      String
+  minRank   Int
+  maxRank   Int
+  collegeId String
+  college   College  @relation(fields: [collegeId], references: [id], onDelete: Cascade)
 }
