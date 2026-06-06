@@ -192,6 +192,10 @@ Campus Orbit aims to simplify the college selection journey by providing student
 * Scholarship Discovery
 * Mobile Application
 
+## Live Demo
+
+https://campus-orbit-5ndh4lf33-bernardo-es-projects.vercel.app/
+
 ---
 
 ## 👨💻 Developer
