@@ -303,7 +303,7 @@ export default function ComparePage() {
                 <div className="text-[9px] font-extrabold tracking-widest text-zinc-500 uppercase">Annual Fees</div>
                 {colleges.map((college) => (
                   <div key={college.id} className="px-4 font-mono text-xs text-blue-400 font-bold">
-                    ${college.fees.toLocaleString()} / Year
+                    ₹{college.fees.toLocaleString()} / Year
                   </div>
                 ))}
                 {Array.from({ length: 3 - colleges.length }).map((_, i) => (
@@ -324,7 +324,7 @@ export default function ComparePage() {
                           <h4 className="text-[11px] font-bold text-white">{course.name}</h4>
                           <div className="flex items-center justify-between text-[9px] text-zinc-500 mt-1.5 font-medium">
                             <span>{course.duration}</span>
-                            <span className="font-mono text-blue-400">${course.fees.toLocaleString()}</span>
+                            <span className="font-mono text-blue-400">₹{course.fees.toLocaleString()}</span>
                           </div>
                         </div>
                       ))

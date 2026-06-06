@@ -22,7 +22,7 @@ export async function GET(req: Request) {
       );
     }
 
-    const validExams = ["JEE Main", "JEE Advanced", "TNEA"];
+    const validExams = ["JEE Main", "JEE Advanced", "TNEA", "VITEEE", "SRMJEEE", "SAEEE"];
     if (!validExams.includes(exam)) {
       return NextResponse.json(
         { error: `Invalid exam. Supported exams are: ${validExams.join(", ")}` },

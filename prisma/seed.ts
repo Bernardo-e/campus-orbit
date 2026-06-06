@@ -9,7 +9,7 @@ const collegesData = [
     rating: 4.9,
     fees: 220000,
     description: "Indian Institute of Technology Madras is a public technical and research university located in Chennai, Tamil Nadu, India. It is consistently ranked as the top engineering institute in India.",
-    image: "https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&q=80&w=600",
+    image: "/images/iitm.jpg",
     courses: [
       { name: "B.Tech Computer Science", duration: "4 Years", fees: 220000 },
       { name: "M.Tech Data Science", duration: "2 Years", fees: 120000 },
@@ -26,7 +26,7 @@ const collegesData = [
     rating: 4.7,
     fees: 145000,
     description: "National Institute of Technology, Tiruchirappalli is a public technical and research university. It is known for its strong academic curriculum and vibrant campus environment.",
-    image: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&q=80&w=600",
+    image: "/images/nitt.jpg",
     courses: [
       { name: "B.Tech Mechanical Engineering", duration: "4 Years", fees: 145000 },
       { name: "B.Tech Electronics & Communication", duration: "4 Years", fees: 145000 },
@@ -41,15 +41,19 @@ const collegesData = [
     location: "Chennai, Tamil Nadu",
     rating: 4.5,
     fees: 55000,
-    description: "Anna University is a public state university located in Tamil Nadu, India. The main campus is in Guindy, Chennai, offering high-quality education at affordable fees.",
-    image: "https://images.unsplash.com/photo-1592280771190-3e2e4d571952?auto=format&fit=crop&q=80&w=600",
+    description: "Anna University is one of India's most respected public technical universities. Established in 1978 and headquartered in Chennai, it oversees 500+ affiliated colleges while maintaining world-class constituent campuses. Recognized by NAAC with A++ accreditation.",
+    image: "/images/anna.png",
     courses: [
+      { name: "B.E. Computer Science Engineering", duration: "4 Years", fees: 55000 },
+      { name: "B.E. Electronics & Communication Engineering", duration: "4 Years", fees: 55000 },
       { name: "B.E. Information Technology", duration: "4 Years", fees: 55000 },
-      { name: "M.B.A. General Management", duration: "2 Years", fees: 40000 },
+      { name: "M.E. Computer Science & Engineering", duration: "2 Years", fees: 65000 },
+      { name: "M.B.A. General Management", duration: "2 Years", fees: 75000 },
+      { name: "Ph.D. Research Programs", duration: "3-5 Years", fees: 20000 },
     ],
     reviews: [
-      { rating: 4, comment: "Highly experienced faculty and historical campus." },
-      { rating: 5, comment: "Affordable and excellent placement records for IT students." },
+      { rating: 5, comment: "Highly experienced faculty and a prestigious academic brand. The affordability is unmatched for a NAAC A++ institution." },
+      { rating: 4, comment: "Excellent placement records for CSE and IT students. Government recognition makes this one of the best public engineering universities in South India." },
     ],
   },
   {
@@ -58,7 +62,7 @@ const collegesData = [
     rating: 4.6,
     fees: 198000,
     description: "Vellore Institute of Technology is a private deemed university. It is famous for its state-of-the-art infrastructure and flexible credit system.",
-    image: "https://images.unsplash.com/photo-1607237138185-eedd996e5b09?auto=format&fit=crop&q=80&w=600",
+    image: "/images/vit.jpg",
     courses: [
       { name: "B.Tech Computer Science", duration: "4 Years", fees: 198000 },
       { name: "B.Tech Bio-Technology", duration: "4 Years", fees: 175000 },
@@ -70,35 +74,43 @@ const collegesData = [
     ],
   },
   {
-    name: "SRM Institute",
-    location: "Kattankulathur, Tamil Nadu",
-    rating: 4.3,
+    name: "SRM Institute of Science and Technology",
+    location: "Kattankulathur, Chennai, Tamil Nadu",
+    rating: 4.6,
     fees: 250000,
-    description: "SRM Institute of Science and Technology is a top-ranked private university. It offers a wide range of undergraduate, postgraduate, and doctoral programs.",
-    image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&q=80&w=600",
+    description: "SRM Institute of Science and Technology is one of India's top-ranked private universities, offering world-class programs in engineering, technology, management, medicine, and research. Known for strong placements, modern infrastructure, and global exposure.",
+    image: "/images/srm.jpg",
     courses: [
-      { name: "B.Tech CSE (AI & ML)", duration: "4 Years", fees: 300000 },
-      { name: "B.Tech Civil Engineering", duration: "4 Years", fees: 250000 },
+      { name: "B.Tech Computer Science Engineering", duration: "4 Years", fees: 250000 },
+      { name: "B.Tech CSE (AI & Machine Learning)", duration: "4 Years", fees: 300000 },
+      { name: "B.Tech Electronics & Communication", duration: "4 Years", fees: 250000 },
+      { name: "B.Tech Cyber Security", duration: "4 Years", fees: 280000 },
+      { name: "M.Tech Software Engineering", duration: "2 Years", fees: 150000 },
+      { name: "MBA General Management", duration: "2 Years", fees: 350000 },
     ],
     reviews: [
-      { rating: 4, comment: "Huge campus with a diverse crowd and good cultural festivals." },
-      { rating: 4, comment: "Decent placements and very friendly faculty." },
+      { rating: 5, comment: "Excellent infrastructure and world-class labs. The campus life at SRM is incredible with Aaruush and Milan festivals. Placements are very strong especially for CSE." },
+      { rating: 4, comment: "Great industry connections and strong placement support. The AI & ML program is outstanding. Fee structure is on the higher side but worth it for the exposure." },
     ],
   },
   {
-    name: "Sathyabama Institute",
+    name: "Sathyabama Institute of Science and Technology",
     location: "Chennai, Tamil Nadu",
-    rating: 4.1,
+    rating: 4.5,
     fees: 175000,
-    description: "Sathyabama Institute of Science and Technology is a premier private university. It is known for its research output and strong industry connections.",
-    image: "https://images.unsplash.com/photo-1595853035070-59a39fe84de3?auto=format&fit=crop&q=80&w=600",
+    description: "Sathyabama Institute of Science and Technology is one of Chennai's most respected private universities, known for engineering, aerospace, architecture, science, and research. Recognized by NAAC with A++ accreditation and strong industry connections.",
+    image: "/images/sathyabama.jpg",
     courses: [
-      { name: "B.Tech Aeronautical Engineering", duration: "4 Years", fees: 185000 },
-      { name: "B.Tech Information Technology", duration: "4 Years", fees: 175000 },
+      { name: "B.Tech Computer Science Engineering", duration: "4 Years", fees: 175000 },
+      { name: "B.Tech AI & Data Science", duration: "4 Years", fees: 185000 },
+      { name: "B.Tech Aerospace Engineering", duration: "4 Years", fees: 185000 },
+      { name: "B.Tech Cyber Security", duration: "4 Years", fees: 180000 },
+      { name: "M.E. Computer Science & Engineering", duration: "2 Years", fees: 120000 },
+      { name: "MBA General Management", duration: "2 Years", fees: 200000 },
     ],
     reviews: [
-      { rating: 4, comment: "Excellent placement opportunities and structured schedule." },
-      { rating: 4, comment: "Very disciplined environment and good lab infrastructure." },
+      { rating: 5, comment: "Excellent infrastructure and strong research orientation. The Aerospace Engineering program is outstanding. Placement support is very good, especially for CSE and AI branches." },
+      { rating: 4, comment: "Very disciplined environment, good lab facilities, and active student community. NAAC A++ accreditation reflects the academic quality well." },
     ],
   },
 ];
@@ -170,8 +182,8 @@ async function main() {
   const nitId = getCollegeId("NIT Trichy");
   const annaId = getCollegeId("Anna University");
   const vitId = getCollegeId("VIT Vellore");
-  const srmId = getCollegeId("SRM Institute");
-  const sathyabamaId = getCollegeId("Sathyabama Institute");
+  const srmId = getCollegeId("SRM Institute of Science and Technology");
+  const sathyabamaId = getCollegeId("Sathyabama Institute of Science and Technology");
 
   // Clean existing predictors
   await prisma.collegePredictor.deleteMany({});
@@ -196,18 +208,20 @@ async function main() {
   }
   if (vitId) {
     predictors.push(
-      { exam: "JEE Main", minRank: 5000, maxRank: 35000, collegeId: vitId }
+      { exam: "VITEEE", minRank: 1, maxRank: 100000, collegeId: vitId }
     );
   }
   if (srmId) {
     predictors.push(
+      { exam: "SRMJEEE", minRank: 1, maxRank: 50000, collegeId: srmId },
       { exam: "JEE Main", minRank: 10000, maxRank: 50000, collegeId: srmId }
     );
   }
   if (sathyabamaId) {
     predictors.push(
       { exam: "TNEA", minRank: 10000, maxRank: 45000, collegeId: sathyabamaId },
-      { exam: "JEE Main", minRank: 15000, maxRank: 45000, collegeId: sathyabamaId }
+      { exam: "JEE Main", minRank: 15000, maxRank: 45000, collegeId: sathyabamaId },
+      { exam: "SAEEE", minRank: 1, maxRank: 50000, collegeId: sathyabamaId }
     );
   }
 

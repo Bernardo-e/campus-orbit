@@ -38,7 +38,7 @@ export default function Home() {
 
   // --- Client-side Visual UI States ---
   const [locationFilter, setLocationFilter] = useState("All Locations");
-  const [programTypes, setProgramTypes] = useState<string[]>(["Postgraduate"]);
+  const [programTypes, setProgramTypes] = useState<string[]>([]);
   const [rankingRange, setRankingRange] = useState(100);
   const [minFees, setMinFees] = useState("");
   const [maxFees, setMaxFees] = useState("");
@@ -160,6 +160,22 @@ export default function Home() {
         params.append("order", order);
       }
 
+      if (locationFilter && locationFilter !== "All Locations") {
+        params.append("location", locationFilter);
+      }
+      if (programTypes.length > 0) {
+        params.append("programTypes", programTypes.join(","));
+      }
+      if (rankingRange) {
+        params.append("rankingRange", rankingRange.toString());
+      }
+      if (minFees) {
+        params.append("minFees", minFees);
+      }
+      if (maxFees) {
+        params.append("maxFees", maxFees);
+      }
+
       const res = await fetch(`/api/colleges?${params.toString()}`);
       if (!res.ok) throw new Error("Failed to fetch college list");
       const data: ApiResponse = await res.json();
@@ -181,7 +197,7 @@ export default function Home() {
     }, 300);
 
     return () => clearTimeout(delayDebounce);
-  }, [search, sort, order, page]);
+  }, [search, sort, order, page, locationFilter, programTypes, rankingRange, minFees, maxFees]);
 
   // Handle Sort changes
   const handleSortChange = (newSort: "rating" | "fees") => {
@@ -211,6 +227,7 @@ export default function Home() {
     setProgramTypes((prev) =>
       prev.includes(type) ? prev.filter((t) => t !== type) : [...prev, type]
     );
+    setPage(1);
   };
 
   // Framer Motion Animation Variants
@@ -317,14 +334,15 @@ export default function Home() {
               <div className="relative">
                 <select
                   value={locationFilter}
-                  onChange={(e) => setLocationFilter(e.target.value)}
+                  onChange={(e) => { setLocationFilter(e.target.value); setPage(1); }}
                   className="w-full bg-[#111116] border border-zinc-850 rounded-xl px-3.5 py-2.5 text-xs text-zinc-300 focus:outline-none focus:border-zinc-750 appearance-none cursor-pointer"
                 >
                   <option>All Locations</option>
-                  <option>North America</option>
-                  <option>Europe</option>
-                  <option>Asia</option>
                   <option>Tamil Nadu, India</option>
+                  <option>Chennai / Madras</option>
+                  <option>Tiruchirappalli / Trichy</option>
+                  <option>Vellore</option>
+                  <option>Kattankulathur</option>
                 </select>
                 <div className="absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none text-zinc-500">
                   <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
@@ -366,7 +384,7 @@ export default function Home() {
                 max="500"
                 step="10"
                 value={rankingRange}
-                onChange={(e) => setRankingRange(parseInt(e.target.value, 10))}
+                onChange={(e) => { setRankingRange(parseInt(e.target.value, 10)); setPage(1); }}
                 className="w-full accent-blue-500 bg-zinc-800 h-1.5 rounded-lg cursor-pointer"
               />
               <div className="flex items-center justify-between text-[9px] font-mono text-zinc-650">
@@ -377,13 +395,13 @@ export default function Home() {
 
             {/* ANNUAL FEES FILTER */}
             <div className="space-y-2">
-              <label className="text-[9px] font-extrabold tracking-widest text-zinc-500 uppercase block">Annual Fees (USD)</label>
+              <label className="text-[9px] font-extrabold tracking-widest text-zinc-500 uppercase block">Annual Fees (INR)</label>
               <div className="flex items-center gap-2">
                 <input
                   type="number"
                   placeholder="Min"
                   value={minFees}
-                  onChange={(e) => setMinFees(e.target.value)}
+                  onChange={(e) => { setMinFees(e.target.value); setPage(1); }}
                   className="w-full bg-[#111116] border border-zinc-850 rounded-xl px-3 py-2.5 text-xs text-zinc-300 placeholder-zinc-650 focus:outline-none focus:border-zinc-700"
                 />
                 <span className="text-zinc-650 text-xs">-</span>
@@ -391,7 +409,7 @@ export default function Home() {
                   type="number"
                   placeholder="Max"
                   value={maxFees}
-                  onChange={(e) => setMaxFees(e.target.value)}
+                  onChange={(e) => { setMaxFees(e.target.value); setPage(1); }}
                   className="w-full bg-[#111116] border border-zinc-850 rounded-xl px-3 py-2.5 text-xs text-zinc-300 placeholder-zinc-650 focus:outline-none focus:border-zinc-700"
                 />
               </div>
@@ -629,7 +647,7 @@ export default function Home() {
                           <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
                         <span className="font-mono text-blue-400 font-semibold">
-                          ${college.fees.toLocaleString()} / Year
+                          ₹{college.fees.toLocaleString()} / Year
                         </span>
                       </div>
                     </div>

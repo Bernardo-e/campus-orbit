@@ -166,6 +166,9 @@ export default function ProfilePage() {
                     <option>JEE Main</option>
                     <option>JEE Advanced</option>
                     <option>TNEA</option>
+                    <option>VITEEE</option>
+                    <option>SRMJEEE</option>
+                    <option>SAEEE</option>
                   </select>
                   <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-zinc-500">
                     <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
