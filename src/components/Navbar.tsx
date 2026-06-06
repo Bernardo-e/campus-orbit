@@ -30,8 +30,35 @@ export default function Navbar() {
     setMobileMenuOpen(false);
   }, [pathname]);
 
+  // Framer Motion staggered animations for mobile menu
+  const mobileMenuContainer = {
+    hidden: { opacity: 0, height: 0 },
+    show: {
+      opacity: 1,
+      height: "auto",
+      transition: {
+        height: { duration: 0.25, ease: "easeOut" as const },
+        staggerChildren: 0.05,
+        delayChildren: 0.05
+      }
+    },
+    exit: {
+      opacity: 0,
+      height: 0,
+      transition: {
+        height: { duration: 0.2, ease: "easeIn" as const },
+        opacity: { duration: 0.15 }
+      }
+    }
+  };
+
+  const mobileMenuItem = {
+    hidden: { opacity: 0, x: -12 },
+    show: { opacity: 1, x: 0, transition: { type: "spring" as const, stiffness: 180, damping: 18 } }
+  };
+
   return (
-    <header className="border-b border-zinc-900/60 bg-[#08080a]/80 backdrop-blur-md sticky top-0 z-50 transition-all duration-300">
+    <header className="border-b border-zinc-900/60 bg-[#08080a]/75 backdrop-blur-md sticky top-0 z-50 transition-all duration-300">
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
         
         {/* LOGO */}
@@ -63,7 +90,7 @@ export default function Navbar() {
                   key={item.href}
                   href={item.href}
                   className={`relative px-4 py-1.5 text-xs font-semibold rounded-full tracking-wide transition-colors duration-200 z-10 ${
-                    isActive ? "text-white" : "text-zinc-450 hover:text-zinc-200"
+                    isActive ? "text-white" : "text-zinc-400 hover:text-zinc-200"
                   }`}
                 >
                   {isActive && (
@@ -115,7 +142,7 @@ export default function Navbar() {
                     animate={{ opacity: 1, scale: 1, y: 0 }}
                     exit={{ opacity: 0, scale: 0.95, y: -6 }}
                     transition={{ duration: 0.15 }}
-                    className="absolute right-0 mt-2 w-48 bg-[#0c0c10]/95 border border-zinc-850/80 rounded-xl shadow-2xl p-1.5 space-y-0.5 z-50 backdrop-blur-md"
+                    className="absolute right-0 mt-2 w-48 bg-[#0c0c10]/95 border border-zinc-800 rounded-xl shadow-2xl p-1.5 space-y-0.5 z-50 backdrop-blur-md"
                   >
                     <Link
                       href="/profile"
@@ -167,7 +194,7 @@ export default function Navbar() {
           {/* MOBILE MENU TOGGLE */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-2 text-zinc-450 hover:text-white rounded-lg hover:bg-zinc-900/30 transition-all cursor-pointer"
+            className="md:hidden p-2 text-zinc-400 hover:text-white rounded-lg hover:bg-zinc-900/30 transition-all cursor-pointer"
             aria-label="Toggle menu"
           >
             {mobileMenuOpen ? (
@@ -187,61 +214,41 @@ export default function Navbar() {
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.2 }}
+            variants={mobileMenuContainer}
+            initial="hidden"
+            animate="show"
+            exit="exit"
             className="md:hidden border-t border-zinc-900 bg-[#08080a] px-6 py-4 space-y-4 overflow-hidden"
           >
             <nav className="flex flex-col gap-3">
-              <Link
-                href="/"
-                className={`text-sm font-medium ${
-                  pathname === "/" ? "text-blue-500" : "text-zinc-400"
-                }`}
-              >
-                Explore
-              </Link>
-              <Link
-                href="/compare"
-                className={`text-sm font-medium ${
-                  pathname.startsWith("/compare") ? "text-blue-500" : "text-zinc-400"
-                }`}
-              >
-                Comparisons
-              </Link>
-              <Link
-                href="/predictor"
-                className={`text-sm font-medium ${
-                  pathname.startsWith("/predictor") ? "text-blue-500" : "text-zinc-400"
-                }`}
-              >
-                🎯 Predictor
-              </Link>
-              <Link
-                href="/discussions"
-                className={`text-sm font-medium ${
-                  pathname.startsWith("/discussions") ? "text-blue-500" : "text-zinc-400"
-                }`}
-              >
-                💬 Community
-              </Link>
-              <Link
-                href="/profile"
-                className={`text-sm font-medium ${
-                  pathname.startsWith("/profile") ? "text-blue-500" : "text-zinc-400"
-                }`}
-              >
-                My Profile
-              </Link>
+              {[
+                { href: "/", label: "Explore" },
+                { href: "/compare", label: "Comparisons" },
+                { href: "/predictor", label: "🎯 Predictor" },
+                { href: "/discussions", label: "💬 Community" },
+                { href: "/profile", label: "My Profile" },
+              ].map((item) => (
+                <motion.div key={item.href} variants={mobileMenuItem}>
+                  <Link
+                    href={item.href}
+                    className={`text-sm font-medium ${
+                      pathname === item.href || (item.href !== "/" && pathname.startsWith(item.href))
+                        ? "text-blue-500"
+                        : "text-zinc-400"
+                    }`}
+                  >
+                    {item.label}
+                  </Link>
+                </motion.div>
+              ))}
             </nav>
 
-            <div className="h-px bg-zinc-900" />
+            <motion.div variants={mobileMenuItem} className="h-px bg-zinc-900" />
 
             {loading ? (
               <div className="w-full h-8 rounded-lg bg-zinc-900 animate-pulse" />
             ) : user ? (
-              <div className="space-y-3">
+              <motion.div variants={mobileMenuItem} className="space-y-3">
                 <div className="text-xs text-zinc-500 font-semibold px-1">Logged in as {user.name}</div>
                 <button
                   onClick={logout}
@@ -249,9 +256,9 @@ export default function Navbar() {
                 >
                   Logout
                 </button>
-              </div>
+              </motion.div>
             ) : (
-              <div className="flex flex-col gap-2">
+              <motion.div variants={mobileMenuItem} className="flex flex-col gap-2">
                 <Link
                   href="/login"
                   className="w-full text-center py-2 text-xs font-semibold bg-zinc-900 hover:bg-zinc-800 text-zinc-200 rounded-lg transition-all border border-zinc-800"
@@ -264,7 +271,7 @@ export default function Navbar() {
                 >
                   Sign Up
                 </Link>
-              </div>
+              </motion.div>
             )}
           </motion.div>
         )}

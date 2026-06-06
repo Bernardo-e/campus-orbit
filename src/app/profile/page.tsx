@@ -121,14 +121,14 @@ export default function ProfilePage() {
             
             {/* Input - Email (Disabled/Locked) */}
             <div className="space-y-2">
-              <label className="text-[9px] font-extrabold tracking-widest text-zinc-550 uppercase">
+              <label className="text-[9px] font-extrabold tracking-widest text-zinc-500 uppercase">
                 Email Address
               </label>
               <input
                 type="email"
                 disabled
                 value={user?.email || ""}
-                className="w-full bg-[#111116]/40 border border-zinc-900 rounded-xl px-4 py-3 text-xs text-zinc-500 cursor-not-allowed select-none focus:outline-none"
+                className="w-full bg-[#111116]/40 border border-zinc-900/80 rounded-xl px-4 py-3 text-xs text-zinc-500 cursor-not-allowed select-none focus:outline-none"
               />
               <p className="text-[10px] text-zinc-600 font-medium">Email address changes are managed securely by credentials administrators.</p>
             </div>
@@ -145,7 +145,7 @@ export default function ProfilePage() {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="e.g. John Doe"
-                className="w-full bg-[#111116] border border-zinc-850 rounded-xl px-4 py-3 text-xs text-zinc-200 placeholder-zinc-650 focus:outline-none focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/10 transition-all"
+                className="w-full bg-[#111116] border border-zinc-800 rounded-xl px-4 py-3 text-xs text-zinc-200 placeholder-zinc-600 focus:outline-none focus:border-blue-500/60 focus:shadow-[0_0_20px_rgba(59,130,246,0.12)] transition-all"
               />
             </div>
 
@@ -161,7 +161,7 @@ export default function ProfilePage() {
                     id="targetExam"
                     value={targetExam}
                     onChange={(e) => setTargetExam(e.target.value)}
-                    className="w-full bg-[#111116] border border-zinc-850 rounded-xl px-4 py-3 text-xs text-zinc-200 focus:outline-none focus:border-zinc-700 appearance-none cursor-pointer"
+                    className="w-full bg-[#111116] border border-zinc-800 rounded-xl px-4 py-3 text-xs text-zinc-200 focus:outline-none focus:border-zinc-700 appearance-none cursor-pointer"
                   >
                     <option>JEE Main</option>
                     <option>JEE Advanced</option>
@@ -189,7 +189,7 @@ export default function ProfilePage() {
                   value={targetBranch}
                   onChange={(e) => setTargetBranch(e.target.value)}
                   placeholder="e.g. Computer Science"
-                  className="w-full bg-[#111116] border border-zinc-850 rounded-xl px-4 py-3 text-xs text-zinc-200 placeholder-zinc-650 focus:outline-none focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/10 transition-all"
+                  className="w-full bg-[#111116] border border-zinc-800 rounded-xl px-4 py-3 text-xs text-zinc-200 placeholder-zinc-600 focus:outline-none focus:border-blue-500/60 focus:shadow-[0_0_20px_rgba(59,130,246,0.12)] transition-all"
                 />
               </div>
             </div>
@@ -206,9 +206,9 @@ export default function ProfilePage() {
                 value={bio}
                 onChange={(e) => setBio(e.target.value)}
                 placeholder="Tell us about your academic goals..."
-                className="w-full bg-[#111116] border border-zinc-850 rounded-xl px-4 py-3 text-xs text-zinc-200 placeholder-zinc-650 focus:outline-none focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/10 transition-all resize-none"
+                className="w-full bg-[#111116] border border-zinc-800 rounded-xl px-4 py-3 text-xs text-zinc-200 placeholder-zinc-600 focus:outline-none focus:border-blue-500/60 focus:shadow-[0_0_20px_rgba(59,130,246,0.12)] transition-all resize-none"
               />
-              <div className="flex justify-end text-[10px] text-zinc-650 font-mono">
+              <div className="flex justify-end text-[10px] text-zinc-600 font-mono">
                 {bio.length}/500 characters
               </div>
             </div>
@@ -236,7 +236,7 @@ export default function ProfilePage() {
                   exit={{ opacity: 0, height: 0 }}
                   className="bg-emerald-950/10 border border-emerald-900/20 rounded-xl p-4 text-xs text-emerald-400 flex items-center gap-3 overflow-hidden"
                 >
-                  <svg className="w-5 h-5 flex-shrink-0 text-emerald-555" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                  <svg className="w-5 h-5 flex-shrink-0 text-emerald-500" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                   <span>Profile updated successfully!</span>
@@ -266,7 +266,7 @@ export default function ProfilePage() {
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-zinc-900 bg-[#060608] py-10 mt-auto relative z-10 text-center text-[10px] font-medium text-zinc-650">
+      <footer className="border-t border-zinc-900 bg-[#060608] py-10 mt-auto relative z-10 text-center text-[10px] font-medium text-zinc-600">
         <span>&copy; {new Date().getFullYear()} Campus Orbit. All rights reserved.</span>
       </footer>
     </div>

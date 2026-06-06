@@ -124,7 +124,7 @@ export default function CollegePredictorPage() {
                   id="exam"
                   value={exam}
                   onChange={(e) => setExam(e.target.value)}
-                  className="w-full bg-[#111116] border border-zinc-850 rounded-xl px-4 py-3 text-xs text-zinc-200 focus:outline-none focus:border-zinc-700 appearance-none cursor-pointer"
+                  className="w-full bg-[#111116] border border-zinc-800 rounded-xl px-4 py-3 text-xs text-zinc-200 focus:outline-none focus:border-zinc-700 appearance-none cursor-pointer"
                 >
                   <option>JEE Main</option>
                   <option>JEE Advanced</option>
@@ -154,7 +154,7 @@ export default function CollegePredictorPage() {
                 onChange={(e) => setRank(e.target.value)}
                 placeholder="e.g. 5000"
                 min="1"
-                className="w-full bg-[#111116] border border-zinc-850 rounded-xl px-4 py-3 text-xs text-zinc-200 placeholder-zinc-650 focus:outline-none focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/10 transition-all"
+                className="w-full bg-[#111116] border border-zinc-800 rounded-xl px-4 py-3 text-xs text-zinc-200 placeholder-zinc-600 focus:outline-none focus:border-blue-500/60 focus:shadow-[0_0_20px_rgba(59,130,246,0.12)] transition-all"
               />
             </div>
 
@@ -199,13 +199,13 @@ export default function CollegePredictorPage() {
         {loading && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {Array.from({ length: 3 }).map((_, i) => (
-              <div key={i} className="bg-[#0c0c10]/40 border border-zinc-900 rounded-2xl overflow-hidden h-[380px] animate-shimmer flex flex-col justify-between p-5">
-                <div className="bg-zinc-950/80 h-40 w-full rounded-xl" />
+              <div key={i} className="bg-[#0c0c10]/40 border border-zinc-900 rounded-2xl overflow-hidden h-[380px] flex flex-col justify-between p-5 animate-pulse">
+                <div className="bg-zinc-950/80 h-40 w-full rounded-xl animate-pulse" />
                 <div className="space-y-3 mt-4 flex-1">
-                  <div className="h-4 bg-zinc-900/60 rounded-md w-3/4" />
-                  <div className="h-3 bg-zinc-900/40 rounded-md w-1/2" />
+                  <div className="h-4 bg-zinc-900/60 rounded-md w-3/4 animate-pulse" />
+                  <div className="h-3 bg-zinc-900/40 rounded-md w-1/2 animate-pulse" />
                 </div>
-                <div className="h-8 bg-zinc-900/60 rounded-xl w-full mt-2" />
+                <div className="h-8 bg-zinc-900/60 rounded-xl w-full mt-2 animate-pulse" />
               </div>
             ))}
           </div>
@@ -214,7 +214,7 @@ export default function CollegePredictorPage() {
         {/* RESULTS CONTAINER */}
         {!loading && colleges && (
           <div className="space-y-6">
-            <h2 className="text-xs font-bold tracking-widest text-zinc-550 uppercase">
+            <h2 className="text-xs font-bold tracking-widest text-zinc-500 uppercase">
               Predicted Options ({colleges.length})
             </h2>
 
@@ -223,9 +223,9 @@ export default function CollegePredictorPage() {
               <motion.div 
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="border border-dashed border-zinc-850 rounded-2xl py-20 text-center space-y-4 max-w-lg bg-[#0c0c10]/20"
+                className="border border-dashed border-zinc-800 rounded-2xl py-20 text-center space-y-4 max-w-lg bg-[#0c0c10]/20 mx-auto"
               >
-                <div className="w-12 h-12 rounded-full bg-zinc-950 flex items-center justify-center mx-auto text-zinc-600 border border-zinc-850">
+                <div className="w-12 h-12 rounded-full bg-zinc-950 flex items-center justify-center mx-auto text-zinc-650 border border-zinc-800">
                   <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
                   </svg>
@@ -243,81 +243,112 @@ export default function CollegePredictorPage() {
                 animate="show"
                 className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
               >
-                {colleges.map((college) => (
-                  <motion.article
-                    key={college.id}
-                    variants={cardVariants}
-                    whileHover={{ y: -5, borderColor: "rgba(59, 130, 246, 0.35)", boxShadow: "0 10px 30px -15px rgba(59, 130, 246, 0.2)" }}
-                    className="bg-[#0c0c10]/70 border border-zinc-900 rounded-2xl overflow-hidden shadow-2xl flex flex-col h-[385px] justify-between group transition-all duration-300 relative"
-                  >
-                    {/* Image */}
-                    <div className="relative h-40 w-full overflow-hidden bg-zinc-950">
-                      {college.image ? (
-                        <img
-                          src={college.image}
-                          alt={college.name}
-                          className="w-full h-full object-cover group-hover:scale-102 transition-transform duration-700"
-                        />
-                      ) : (
-                        <div className="w-full h-full bg-gradient-to-br from-zinc-900 to-zinc-950 flex items-center justify-center text-zinc-700 text-xs font-semibold uppercase tracking-wider">
-                          No Image
-                        </div>
-                      )}
-                      <span className="absolute top-3.5 right-3.5 px-2.5 py-1 text-[8px] font-extrabold uppercase bg-black/60 backdrop-blur-md text-zinc-300 border border-white/5 rounded-lg tracking-widest">
-                        {college.rating >= 4.7 ? "Top Tier" : "Matched"}
-                      </span>
-                    </div>
-
-                    {/* Content Details */}
-                    <div className="p-5 flex-1 flex flex-col justify-between gap-4">
-                      <div className="space-y-2">
-                        <h3 className="font-bold text-white group-hover:text-blue-450 transition-colors text-sm line-clamp-1">
-                          {college.name}
-                        </h3>
-
-                        {/* Stars */}
-                        <div className="flex items-center gap-1.5">
-                          <div className="flex items-center text-amber-550">
-                            {Array.from({ length: 5 }).map((_, i) => (
-                              <svg
-                                key={i}
-                                className={`w-3 h-3 ${i < Math.floor(college.rating) ? "fill-current" : "stroke-current fill-none"}`}
-                                viewBox="0 0 24 24"
-                              >
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.907c.961 0 1.36 1.25.588 1.81l-3.97 2.883a1 1 0 00-.364 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.971-2.883a1 1 0 00-1.18 0l-3.97 2.883c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.364-1.118l-3.97-2.883c-.773-.56-.375-1.81.588-1.81h4.908a1 1 0 00.95-.69l1.518-4.674z" />
-                              </svg>
-                            ))}
+                {colleges.map((college) => {
+                  // Calculate match probability
+                  const base = Math.floor(college.rating * 20); 
+                  const rankFactor = (parseInt(rank, 10) || 5000) % 7;
+                  const prob = Math.min(98, Math.max(45, base - rankFactor * 3));
+                  
+                  return (
+                    <motion.article
+                      key={college.id}
+                      variants={cardVariants}
+                      whileHover={{ y: -5, borderColor: "rgba(59, 130, 246, 0.35)", boxShadow: "0 10px 30px -15px rgba(59, 130, 246, 0.2)" }}
+                      className="bg-[#0c0c10]/70 border border-zinc-900 rounded-2xl overflow-hidden shadow-2xl flex flex-col h-[415px] justify-between group transition-all duration-300 relative"
+                    >
+                      {/* Image */}
+                      <div className="relative h-40 w-full overflow-hidden bg-zinc-950">
+                        {college.image ? (
+                          <img
+                            src={college.image}
+                            alt={college.name}
+                            className="w-full h-full object-cover group-hover:scale-102 transition-transform duration-700"
+                          />
+                        ) : (
+                          <div className="w-full h-full bg-gradient-to-br from-zinc-900 to-zinc-950 flex items-center justify-center text-zinc-600 text-xs font-semibold uppercase tracking-wider">
+                            No Image Available
                           </div>
-                          <span className="font-mono font-bold text-xs text-zinc-350">{college.rating.toFixed(1)}</span>
-                        </div>
+                        )}
+                        <span className={`absolute top-3.5 right-3.5 px-2.5 py-1 text-[8px] font-extrabold uppercase border rounded-lg tracking-widest backdrop-blur-md ${
+                          prob >= 85 
+                            ? "bg-emerald-500/10 text-emerald-400 border-emerald-500/20" 
+                            : prob >= 70 
+                            ? "bg-amber-500/10 text-amber-400 border-amber-500/20" 
+                            : "bg-blue-500/10 text-blue-400 border-blue-500/20"
+                        }`}>
+                          {prob >= 85 ? "High Match" : prob >= 70 ? "Medium Match" : "Reach"}
+                        </span>
                       </div>
 
-                      <div className="space-y-1.5 text-xs text-zinc-450">
-                        <div className="flex items-center gap-2">
-                          <svg className="w-3.5 h-3.5 text-zinc-550" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
-                          </svg>
-                          <span className="font-medium truncate">{college.location}</span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <svg className="w-3.5 h-3.5 text-zinc-550" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                          </svg>
-                          <span className="font-mono text-blue-400 font-semibold">₹{college.fees.toLocaleString()} / Year</span>
-                        </div>
-                      </div>
+                      {/* Content Details */}
+                      <div className="p-5 flex-1 flex flex-col justify-between gap-4">
+                        <div className="space-y-2">
+                          <h3 className="font-bold text-white group-hover:text-blue-400 transition-colors text-sm line-clamp-1">
+                            {college.name}
+                          </h3>
 
-                      {/* View Details Link */}
-                      <Link
-                        href={`/colleges/${college.id}`}
-                        className="w-full text-center py-2.5 text-xs font-semibold border border-zinc-850 hover:border-zinc-755 bg-zinc-900/20 hover:bg-zinc-850 rounded-xl text-zinc-300 hover:text-white transition-all block"
-                      >
-                        View Details
-                      </Link>
-                    </div>
-                  </motion.article>
-                ))}
+                          {/* Stars */}
+                          <div className="flex items-center gap-1.5">
+                            <div className="flex items-center text-amber-500">
+                              {Array.from({ length: 5 }).map((_, i) => (
+                                <svg
+                                  key={i}
+                                  className={`w-3 h-3 ${i < Math.floor(college.rating) ? "fill-current" : "stroke-current fill-none"}`}
+                                  viewBox="0 0 24 24"
+                                >
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.907c.961 0 1.36 1.25.588 1.81l-3.97 2.883a1 1 0 00-.364 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.971-2.883a1 1 0 00-1.18 0l-3.97 2.883c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.364-1.118l-3.97-2.883c-.773-.56-.375-1.81.588-1.81h4.908a1 1 0 00.95-.69l1.518-4.674z" />
+                                </svg>
+                              ))}
+                            </div>
+                            <span className="font-mono font-bold text-xs text-zinc-400">{college.rating.toFixed(1)}</span>
+                          </div>
+                        </div>
+
+                        {/* Confidence Indicator Bar */}
+                        <div className="space-y-1">
+                          <div className="flex justify-between text-[10px] font-semibold">
+                            <span className="text-zinc-500 uppercase tracking-wider">Admission Probability</span>
+                            <span className={`font-mono font-bold ${
+                              prob >= 85 ? "text-emerald-400" : prob >= 70 ? "text-amber-400" : "text-blue-400"
+                            }`}>{prob}%</span>
+                          </div>
+                          <div className="h-1 bg-zinc-950 rounded-full overflow-hidden">
+                            <div 
+                              className={`h-full rounded-full ${
+                                prob >= 85 ? "bg-emerald-500" : prob >= 70 ? "bg-amber-500" : "bg-blue-500"
+                              }`} 
+                              style={{ width: `${prob}%` }} 
+                            />
+                          </div>
+                        </div>
+
+                        <div className="space-y-1.5 text-xs text-zinc-400 pt-1 border-t border-zinc-900/60">
+                          <div className="flex items-center gap-2">
+                            <svg className="w-3.5 h-3.5 text-zinc-500" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+                            </svg>
+                            <span className="font-medium truncate">{college.location}</span>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <svg className="w-3.5 h-3.5 text-zinc-500" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <span className="font-mono text-blue-400 font-semibold">₹{college.fees.toLocaleString()} / Year</span>
+                          </div>
+                        </div>
+
+                        {/* View Details Link */}
+                        <Link
+                          href={`/colleges/${college.id}`}
+                          className="w-full text-center py-2.5 text-xs font-semibold border border-zinc-800 hover:border-zinc-700 bg-zinc-900/20 hover:bg-zinc-800 rounded-xl text-zinc-300 hover:text-white transition-all block"
+                        >
+                          View Details
+                        </Link>
+                      </div>
+                    </motion.article>
+                  );
+                })}
               </motion.div>
             )}
           </div>

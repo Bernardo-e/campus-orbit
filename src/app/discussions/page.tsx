@@ -174,7 +174,7 @@ export default function DiscussionsPage() {
             <input
               type="text" placeholder="Search questions..."
               value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full bg-[#0c0c10]/60 border border-zinc-900 rounded-xl py-2.5 px-4 pl-10 text-xs text-zinc-200 placeholder-zinc-650 focus:outline-none focus:border-zinc-800 transition-all"
+              className="w-full bg-[#0c0c10]/60 border border-zinc-900 rounded-xl py-2.5 px-4 pl-10 text-xs text-zinc-200 placeholder-zinc-600 focus:outline-none focus:border-emerald-500/60 focus:shadow-[0_0_20px_rgba(16,185,129,0.12)] transition-all"
             />
             <div className="absolute left-3.5 top-1/2 -translate-y-1/2 text-zinc-500">
               <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
@@ -189,7 +189,7 @@ export default function DiscussionsPage() {
                 className={`px-3 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wider select-none border transition-all cursor-pointer whitespace-nowrap ${
                   selectedTag === tag
                     ? "bg-white text-black border-white"
-                    : "bg-[#0c0c10]/40 border-zinc-900 text-zinc-400 hover:text-zinc-200 hover:border-zinc-850"
+                    : "bg-[#0c0c10]/40 border-zinc-900 text-zinc-400 hover:text-zinc-200 hover:border-zinc-800"
                 }`}
               >
                 {tag}
@@ -218,9 +218,9 @@ export default function DiscussionsPage() {
             {filtered.length === 0 ? (
               <motion.div
                 initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0 }}
-                className="border border-dashed border-zinc-850 rounded-2xl py-20 text-center space-y-4 max-w-lg mx-auto bg-[#0c0c10]/20 w-full"
+                className="border border-dashed border-zinc-800 rounded-2xl py-20 text-center space-y-4 max-w-lg mx-auto bg-[#0c0c10]/20 w-full"
               >
-                <div className="w-12 h-12 rounded-full bg-zinc-950 flex items-center justify-center mx-auto text-zinc-600 border border-zinc-850">
+                <div className="w-12 h-12 rounded-full bg-zinc-950 flex items-center justify-center mx-auto text-zinc-600 border border-zinc-800">
                   <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M12 20.25c4.97 0 9-3.694 9-8.25s-4.03-8.25-9-8.25S3 7.444 3 12c0 2.104.859 4.023 2.273 5.48.432.447.74 1.04.586 1.641a4.483 4.483 0 01-.92 1.786c-.082.095-.08.24.004.331.085.09.223.091.306.01a5.052 5.052 0 001.222-1.157c.307-.373.745-.558 1.196-.444.976.246 2 .38 3.072.38z" />
                   </svg>
@@ -285,7 +285,7 @@ export default function DiscussionsPage() {
                       {q.tags.length > 0 && (
                         <div className="flex flex-wrap gap-2">
                           {q.tags.map((t) => (
-                            <span key={t} className="px-2 py-0.5 rounded bg-zinc-900/50 border border-zinc-850/60 text-zinc-400 text-[9px] font-semibold tracking-wide">
+                            <span key={t} className="px-2 py-0.5 rounded bg-zinc-900/50 border border-zinc-800/60 text-zinc-400 text-[9px] font-semibold tracking-wide">
                               #{t}
                             </span>
                           ))}
@@ -352,7 +352,7 @@ export default function DiscussionsPage() {
                     type="text" required maxLength={200}
                     value={askTitle} onChange={(e) => setAskTitle(e.target.value)}
                     placeholder="e.g. What are the cutoffs for NIT Trichy CSE 2025?"
-                    className="w-full bg-[#111116] border border-zinc-850 rounded-xl px-4 py-3 text-xs text-zinc-200 placeholder-zinc-600 focus:outline-none focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/10 transition-all"
+                    className="w-full bg-[#111116] border border-zinc-800 rounded-xl px-4 py-3 text-xs text-zinc-200 placeholder-zinc-600 focus:outline-none focus:border-emerald-500/60 focus:shadow-[0_0_20px_rgba(16,185,129,0.12)] transition-all"
                   />
                 </div>
 
@@ -363,7 +363,7 @@ export default function DiscussionsPage() {
                     required rows={5} maxLength={2000}
                     value={askBody} onChange={(e) => setAskBody(e.target.value)}
                     placeholder="Provide more context about your question..."
-                    className="w-full bg-[#111116] border border-zinc-850 rounded-xl px-4 py-3 text-xs text-zinc-200 placeholder-zinc-600 focus:outline-none focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/10 transition-all resize-none"
+                    className="w-full bg-[#111116] border border-zinc-800 rounded-xl px-4 py-3 text-xs text-zinc-200 placeholder-zinc-600 focus:outline-none focus:border-emerald-500/60 focus:shadow-[0_0_20px_rgba(16,185,129,0.12)] transition-all resize-none"
                   />
                   <div className="text-right text-[10px] text-zinc-600 font-mono">{askBody.length}/2000</div>
                 </div>
@@ -375,7 +375,7 @@ export default function DiscussionsPage() {
                     type="text"
                     value={askTags} onChange={(e) => setAskTags(e.target.value)}
                     placeholder="e.g. JEE Main, NIT Trichy, Admissions"
-                    className="w-full bg-[#111116] border border-zinc-850 rounded-xl px-4 py-3 text-xs text-zinc-200 placeholder-zinc-600 focus:outline-none focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/10 transition-all"
+                    className="w-full bg-[#111116] border border-zinc-800 rounded-xl px-4 py-3 text-xs text-zinc-200 placeholder-zinc-600 focus:outline-none focus:border-emerald-500/60 focus:shadow-[0_0_20px_rgba(16,185,129,0.12)] transition-all"
                   />
                 </div>
 
@@ -431,11 +431,11 @@ export default function DiscussionsPage() {
               </div>
               Campus Orbit
             </span>
-            <p className="text-xs text-zinc-555 leading-relaxed max-w-sm">
+            <p className="text-xs text-zinc-500 leading-relaxed max-w-sm">
               Elevating the academic search experience through precise data and sophisticated discovery tools.
             </p>
           </div>
-          <div className="flex flex-wrap md:justify-end gap-x-8 gap-y-3 text-xs font-semibold text-zinc-555">
+          <div className="flex flex-wrap md:justify-end gap-x-8 gap-y-3 text-xs font-semibold text-zinc-500">
             <span className="hover:text-white transition-colors cursor-pointer">About</span>
             <span className="hover:text-white transition-colors cursor-pointer">Privacy Policy</span>
             <span className="hover:text-white transition-colors cursor-pointer">Terms of Service</span>

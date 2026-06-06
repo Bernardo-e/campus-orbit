@@ -139,16 +139,22 @@ export default function CollegeDetailClient({ college }: ClientProps) {
     );
   };
 
-  const tabs = [
-    { id: "about", label: "About" },
-    { id: "programs", label: "Programs & Fees" },
-    { id: "placements", label: "Placements" },
-    ...(college.name === "Vellore Institute of Technology" ? [{ id: "global", label: "Global Exposure" }] : []),
-    { id: "research", label: "Research & Incubation" },
-    { id: "scholarships", label: "Scholarships" },
-    { id: "faq", label: "FAQs & Q&A" },
-    { id: "reviews", label: "Reviews" },
-  ];
+  const tabs = isFlagship
+    ? [
+        { id: "about", label: "About" },
+        { id: "programs", label: "Programs & Fees" },
+        { id: "placements", label: "Placements" },
+        ...(college.name === "Vellore Institute of Technology" ? [{ id: "global", label: "Global Exposure" }] : []),
+        { id: "research", label: "Research & Incubation" },
+        { id: "scholarships", label: "Scholarships" },
+        { id: "faq", label: "FAQs & Q&A" },
+        { id: "reviews", label: "Reviews" },
+      ]
+    : [
+        { id: "about", label: "About" },
+        { id: "programs", label: "Programs & Fees" },
+        { id: "reviews", label: "Reviews" },
+      ];
 
   const renderTabContent = () => {
     if (!isFlagship || !data) {
@@ -1267,8 +1273,8 @@ export default function CollegeDetailClient({ college }: ClientProps) {
             </div>
           )}
 
-           {/* Navigation tabs wrapper */}
-          <div className="border-b border-zinc-950 flex gap-2 overflow-x-auto pb-1 no-scrollbar">
+          {/* Navigation tabs wrapper */}
+          <div className="sticky top-[64px] bg-[#08080a]/90 backdrop-blur-md z-30 border-b border-zinc-900/60 py-3 flex gap-2 overflow-x-auto no-scrollbar -mx-6 px-6 sm:mx-0 sm:px-0">
             {tabs.map((tab) => (
               <button
                 key={tab.id}
@@ -1281,7 +1287,7 @@ export default function CollegeDetailClient({ college }: ClientProps) {
                 className={`px-4 py-2 border-b-2 text-xs font-bold uppercase tracking-wider select-none transition-all cursor-pointer ${
                   activeTab === tab.id
                     ? data?.theme ? "" : "border-blue-500 text-white"
-                    : "border-transparent text-zinc-500 hover:text-zinc-350"
+                    : "border-transparent text-zinc-400 hover:text-white"
                 }`}
               >
                 {tab.label}
